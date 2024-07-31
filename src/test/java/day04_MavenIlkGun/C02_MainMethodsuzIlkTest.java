@@ -19,6 +19,7 @@ public class C02_MainMethodsuzIlkTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         // test otomasyonu sayfasına gidin
         driver.get("https://testotomasyonu.com/");
+        
     }
 
     @Test
