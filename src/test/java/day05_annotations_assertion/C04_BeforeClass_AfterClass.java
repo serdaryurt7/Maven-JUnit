@@ -3,6 +3,7 @@ package day05_annotations_assertion;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -25,13 +26,15 @@ public class C04_BeforeClass_AfterClass {
 
         @Before ve @After YERINE
         @BeforeClass ve @AfterClass kullanırız
+
+        ONEMLI NOT : @BeforeClass ve @AfterClass kullanan method'lar static olmak ZORUNDADIR
      */
 
-    WebDriver driver;
+    static WebDriver driver;
     List<WebElement> bulunanUrunlerListesi;
 
     @BeforeClass
-    public void setup() {
+    public static void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -39,10 +42,11 @@ public class C04_BeforeClass_AfterClass {
     }
 
     @AfterClass
-    public void teardown() {
+    public static void teardown() {
         driver.quit();
     }
 
+    @Test
     public void test01() {
         // 1- testotomasyonu sayfasına gidip, sayfaya gittiğimizi test edin
         driver.get("https://www.testotomasyonu.com/");
@@ -55,6 +59,7 @@ public class C04_BeforeClass_AfterClass {
         } else System.out.println("Test otomasyonu sayfasina gitme testi FAILED");
     }
 
+    @Test
     public void test02() {
         // 2- phone için arama yapıp, ürün bulunabildiğini test edin
         WebElement aramaKutusu = driver.findElement(By.id("global-search"));
@@ -70,9 +75,11 @@ public class C04_BeforeClass_AfterClass {
 
     }
 
-    public void test03() {
+    @Test
+    public void test03() throws InterruptedException {
         // 3- ilk ürüne tıklayıp, ürün açıklamasında, case sensitive olmadan phone geçtiğini test edin
-
+        bulunanUrunlerListesi = driver.findElements(By.xpath("//*[@*='product-box my-2  py-1']"));
+        Thread.sleep(2000);
         bulunanUrunlerListesi.get(0).click();
 
         WebElement urunAciklamaElementi = driver.findElement(By.xpath("//*[@*='product-short-desc  my-2']"));
@@ -80,9 +87,9 @@ public class C04_BeforeClass_AfterClass {
         String expectedIcerik = "phone";
         String actualAciklamaKucukHarf = urunAciklamaElementi.getText().toLowerCase();
 
-        if (actualAciklamaKucukHarf.contains(expectedIcerik)){
+        if (actualAciklamaKucukHarf.contains(expectedIcerik)) {
             System.out.println("ilk urun testi PASSED");
-        }else System.out.println("ilk urun testi FAILED");
+        } else System.out.println("ilk urun testi FAILED");
     }
 
 }
