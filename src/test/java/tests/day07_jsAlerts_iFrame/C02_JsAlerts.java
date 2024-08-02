@@ -78,5 +78,4 @@ public class C02_JsAlerts extends TestBase {
 
     }
 
-
 }
