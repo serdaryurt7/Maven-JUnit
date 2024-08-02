@@ -70,6 +70,8 @@ public class C01_DropdownMenu extends TestBase {
 
         ReusableMethods.bekle(2);
 
+        // 1:02
+
     }
 
 }
