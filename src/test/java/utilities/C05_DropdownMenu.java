@@ -1,14 +1,19 @@
 package utilities;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class C05_DropdownMenu extends TestBase {
 
     @Test
     public void dropdowntesti() throws InterruptedException {
+
+        // Select tagına sahipse dropdown menu'dur
 
         //    https://testotomasyonu.com/form  adresine gidin
         driver.get("https://testotomasyonu.com/form");
@@ -24,7 +29,6 @@ public class C05_DropdownMenu extends TestBase {
         Select selectAy = new Select(ayDropdownMenu);
         selectAy.selectByValue("nisan");
 
-        Thread.sleep(1000);
 
         // 3. Doğum tarihi yıl seçeneğinden visible text kullanarak 1990'i seçin
         WebElement yilDropdownMenu = driver.findElement(By.xpath("(//select[@class='form-control'])[3]"));
@@ -38,9 +42,19 @@ public class C05_DropdownMenu extends TestBase {
 
 
         // 5. Ay dropdown menüdeki tüm değerleri(value) yazdırın
+
+        List<WebElement> optionElementleriList = selectAy.getOptions();
+        System.out.println(ReusableMethods.stringListeCevir(optionElementleriList));
+
+        // listedeki opsiyonlarda Mart değeri olduğunu test edin
+
+        Assert.assertTrue(ReusableMethods.stringListeCevir(optionElementleriList).contains("Mart"));
+
         // 6. Ay dropdown menusunun boyutunun 13 olduğunu test edin
 
-        Thread.sleep(5000);
+        Assert.assertEquals(13, optionElementleriList.size());
+
+        ReusableMethods.bekle(5);
 
     }
 
