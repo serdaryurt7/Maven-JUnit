@@ -76,6 +76,8 @@ public class C02_JsAlerts extends TestBase {
 
         Assert.assertTrue(actualSonucYazisi.contains(expectedSonucYazisi));
 
+        // 1:58
+
     }
 
 }
