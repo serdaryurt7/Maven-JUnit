@@ -48,7 +48,5 @@ public class C01_IFrame extends TestBase {
         System.out.println(elementalSeleniumElementi.getText());
 
         ReusableMethods.bekle(3);
-
-
     }
 }
