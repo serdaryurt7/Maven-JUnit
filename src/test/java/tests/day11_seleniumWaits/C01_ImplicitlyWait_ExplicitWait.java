@@ -73,7 +73,7 @@ public class C01_ImplicitlyWait_ExplicitWait {
         // 3. "It's gone!" mesajının görüntülendiğini doğrulayın
 
         // implicitlyWait'in tolere edemediği durumlarda
-        // explicitlyWait için WebDriverwait objesi oluştururuz
+        // explicitlyWait için WebDriverWait objesi oluştururuz
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -93,8 +93,6 @@ public class C01_ImplicitlyWait_ExplicitWait {
          */
 
         WebElement itsGoneElementi = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()=\"It's gone!\"]")));
-
-
         Assert.assertTrue(itsGoneElementi.isDisplayed());
 
 

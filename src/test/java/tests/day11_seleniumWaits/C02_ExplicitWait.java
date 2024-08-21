@@ -50,5 +50,4 @@ public class C02_ExplicitWait {
 
     }
 
-
 }
