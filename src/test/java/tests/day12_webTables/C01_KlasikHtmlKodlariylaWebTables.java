@@ -56,9 +56,17 @@ public class C01_KlasikHtmlKodlariylaWebTables extends TestBase {
         System.out.println("Basliklar : " + baslikElementi.getText());
 
         // 9. Satır ve sütunu parametre olarak alıp, hücredeki bilgiyi döndüren bir method oluşturun
+        System.out.println(dataDondur(2, 3)); // $40.00
+        System.out.println(dataDondur(4, 2)); // Furniture
 
 
         // 10. 4.satırdaki category değerinin "Furniture" olduğunu test edin
+
+        String expectedData = "Furniture";
+        String actualData = dataDondur(4, 2);
+
+        Assert.assertEquals(expectedData, actualData);
+
         ReusableMethods.bekle(2);
 
     }
@@ -66,7 +74,7 @@ public class C01_KlasikHtmlKodlariylaWebTables extends TestBase {
     public String dataDondur(int satirNo, int sutunNo) {
 
         //     //tbody/tr[4]/td[1]
-        String dinamikXpath = "//tbody/tr" + satirNo + "]/td[" + sutunNo + "]";
+        String dinamikXpath = "//tbody/tr[" + satirNo + "]/td[" + sutunNo + "]";
 
         WebElement istenenHucreElementi = driver.findElement(By.xpath(dinamikXpath));
 
