@@ -36,7 +36,7 @@ public class C06_DosyaYuklemeTesti extends TestBase {
 
         WebElement chooseFileButonu = driver.findElement(By.id("file-upload"));
 
-        String dinamikDosyaYolu = System.getProperty("user.home") + "\\Desktop\\reklam.png";
+        String dinamikDosyaYolu = System.getProperty("user.home") + "\\Desktop\\netmon_json_export.zip";
 
         chooseFileButonu.sendKeys(dinamikDosyaYolu);
 
