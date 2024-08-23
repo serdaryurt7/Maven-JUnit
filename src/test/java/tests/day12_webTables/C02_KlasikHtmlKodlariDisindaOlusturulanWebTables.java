@@ -44,9 +44,42 @@ public class C02_KlasikHtmlKodlariDisindaOlusturulanWebTables extends TestBase {
         System.out.println(ReusableMethods.stringListeCevir(ucuncuSutunElementlerList));
 
         // 9. Tabloda "Category" si Furniture olan ürünün fiyatını yazdırın
+
+        // category  :  (//*[@role='trow'])[    3    ]/*[@role='tdata'][2]
+        // price  :     (//*[@role='trow'])[    3    ]/*[@role='tdata'][3]
+
+        for (int i = 1; i <= satirElementleriList.size(); i++) {
+
+            String dinamikCategoryXpath = "(//*[@role='trow'])[" + i + "]/*[@role='tdata'][2]";
+            String dinamikPriceXpath = "(//*[@role='trow'])[" + i + "]/*[@role='tdata'][3]";
+
+            WebElement satirdakiCategoryElementi = driver.findElement(By.xpath(dinamikCategoryXpath));
+            WebElement satirdakiPriceElementi = driver.findElement(By.xpath(dinamikPriceXpath));
+
+            if (satirdakiCategoryElementi.getText().equalsIgnoreCase("Furniture")) {
+                System.out.println(satirdakiPriceElementi.getText());
+            }
+
+        }
+
         //10. Bir method oluşturun, Test sayfasından satır ve sütun verildiğinde datayı yazdırsın
+        datayiYazdir(3, 3);
+        datayiYazdir(2, 2);
+
 
         ReusableMethods.bekle(3);
+
+    }
+
+    public void datayiYazdir(int satirNo, int sutunNo) {
+
+        // category  :  (//*[@role='trow'])[    3    ]/*[@role='tdata'][   2   ]
+
+        String dinamikXpath = "(//*[@role='trow'])[" + satirNo + "]/*[@role='tdata'][" + sutunNo + "]";
+
+        WebElement istenenHucreElementi = driver.findElement(By.xpath(dinamikXpath));
+
+        System.out.println("istenen hucredeki data : " + istenenHucreElementi.getText());
 
     }
 
