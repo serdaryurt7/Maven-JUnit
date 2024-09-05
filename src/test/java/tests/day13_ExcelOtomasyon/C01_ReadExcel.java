@@ -29,6 +29,7 @@ public class C01_ReadExcel {
 
 
         //11. Worksheet objesi oluşturun workbook.getSheetAt(index)
+
         Sheet sayfa1 = workbook.getSheet("Sayfa1");
 
         // Row ve Cell index kullanır, yani 0'dan başlar
@@ -40,7 +41,6 @@ public class C01_ReadExcel {
         Cell cell = row.getCell(1);
 
         System.out.println(cell);
-
     }
 
 }
