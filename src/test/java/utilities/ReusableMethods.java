@@ -113,4 +113,48 @@ public class ReusableMethods {
 
     }
 
+    public static void webelementScreenshot(WebElement webElement) {
+
+        // 1- screenshot alacağınız webelementi locate edip kaydedin
+        // 2- screenshot'i kaydedeceğimiz dosyayı oluşturun
+
+        //    screenshot ismini unique yapabilmek için, timestamp ekleyelim
+        LocalDateTime ldt = LocalDateTime.now();
+        DateTimeFormatter zamanFormati = DateTimeFormatter.ofPattern("YYMMddHHmmss");
+        String timeStamp = ldt.format(zamanFormati);
+
+        File webelementSS = new File("target/webelementScreenshots/webElement" + timeStamp + ".jpg");
+        // 3- webelementi kullanarak screenshot alın ve geçici dosyaya kaydedin
+        File geciciScreenshot = webElement.getScreenshotAs(OutputType.FILE);
+        // 4- gecici dosyayi asil dosyaya kopyalayalım
+        try {
+            FileUtils.copyFile(geciciScreenshot, webelementSS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void webelementScreenshot(WebElement webElement, String screenshotIsim) {
+
+        // 1- screenshot alacağınız webelementi locate edip kaydedin
+        // 2- screenshot'i kaydedeceğimiz dosyayı oluşturun
+
+        //    screenshot ismini unique yapabilmek için, timestamp ekleyelim
+        LocalDateTime ldt = LocalDateTime.now();
+        DateTimeFormatter zamanFormati = DateTimeFormatter.ofPattern("YYMMddHHmmss");
+        String timeStamp = ldt.format(zamanFormati);
+
+        File webelementSS = new File("target/webelementScreenshots/" + screenshotIsim + timeStamp + ".jpg");
+        // 3- webelementi kullanarak screenshot alın ve geçici dosyaya kaydedin
+        File geciciScreenshot = webElement.getScreenshotAs(OutputType.FILE);
+        // 4- gecici dosyayi asil dosyaya kopyalayalım
+        try {
+            FileUtils.copyFile(geciciScreenshot, webelementSS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
